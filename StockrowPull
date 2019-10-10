@@ -1,3 +1,5 @@
+#Stockrow downloading
+
 
 import wget
 import pandas as pd
@@ -8,7 +10,8 @@ def StockRowPull(ticker, save_location):
     print('Beginning Download')
     for i in ticker:
         #create the folder in which all of the dowloads will be saved
-        os.makedirs(save_location + i)
+        if not os.path.exists(save_location + i):
+            os.makedirs(save_location + i)
         #location of income statement
         Income_url = 'https://stockrow.com/api/companies/' + i + '/financials.xlsx?dimension=MRY&section=Income%20Statement&sort=desc'
         #download the income statement to previously specified location
@@ -24,4 +27,4 @@ def StockRowPull(ticker, save_location):
     print('Files Downloaded')
     
     
-StockRowPull(ticker, save_location = 'C:/Users/Busin/Desktop/Python/Investment Analysis/')
+StockRowPull(ticker, save_location = 'C:/Users/Busin/Desktop/Python/Investment Analysis/Stockrow/')
