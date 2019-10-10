@@ -1,0 +1,27 @@
+
+import wget
+import pandas as pd
+import os
+
+ticker = ['THO', 'AAPL']
+def StockRowPull(ticker, save_location):
+    print('Beginning Download')
+    for i in ticker:
+        #create the folder in which all of the dowloads will be saved
+        os.makedirs(save_location + i)
+        #location of income statement
+        Income_url = 'https://stockrow.com/api/companies/' + i + '/financials.xlsx?dimension=MRY&section=Income%20Statement&sort=desc'
+        #download the income statement to previously specified location
+        wget.download(Income_url, save_location + i + '/Incomestatement.xlsx')
+        #location of balance sheet
+        Balance_url = 'https://stockrow.com/api/companies/' + i + '/financials.xlsx?dimension=MRY&section=Balance%20Sheet&sort=desc'
+        #download the balance sheet
+        wget.download(Balance_url, save_location + i + '/BalanceSheet.xlsx')
+        #location of cash flows
+        Cash_url = 'https://stockrow.com/api/companies/' + i + '/financials.xlsx?dimension=MRY&section=Cash%20Flow&sort=desc'
+        #download cash flows
+        wget.download(Cash_url, save_location + i + '/StatementofCashFlows.xlsx')
+    print('Files Downloaded')
+    
+    
+StockRowPull(ticker, save_location = 'C:/Users/Busin/Desktop/Python/Investment Analysis/')
