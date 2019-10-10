@@ -24,6 +24,9 @@ def StockRowPull(ticker, save_location):
         Cash_url = 'https://stockrow.com/api/companies/' + i + '/financials.xlsx?dimension=MRY&section=Cash%20Flow&sort=desc'
         #download cash flows
         wget.download(Cash_url, save_location + i + '/StatementofCashFlows.xlsx')
+        Metrics_url = 'https://stockrow.com/api/companies/' + i + '/financials.xlsx?dimension=MRY&section=Metrics&sort=desc'
+        #download cash flows
+        wget.download(Metrics_url, save_location + i + '/Metrics.xlsx')
     print('Files Downloaded')
     
     
